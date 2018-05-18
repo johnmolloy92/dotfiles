@@ -39,7 +39,7 @@ alias emacs="/usr/local/Cellar/emacs/25.1/bin/emacs -nw"
 # ---------
 # Git
 # ---------
-alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias glol='git log --graph --decorate --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit -all'
 alias gst='git status'
 alias gd='git diff'
 
