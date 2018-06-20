@@ -39,7 +39,7 @@ alias emacs="/usr/local/Cellar/emacs/25.1/bin/emacs -nw"
 # ---------
 # Git
 # ---------
-alias glol='git log --graph --decorate --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit -all'
+alias glol='git log --graph --decorate --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias gst='git status'
 alias gd='git diff'
 
@@ -126,3 +126,5 @@ alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5m
 alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
 
 alias deflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
+
+alias k="kubectl"

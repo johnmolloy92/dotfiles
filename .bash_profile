@@ -44,9 +44,21 @@ export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
 ssh-add -A 2>/dev/null
 
+#Ignore duplicates
 export HISTCONTROL=ignoreboth:erasedups
+
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
+
+# After each command, append to the history file and reread it
+#export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
+
+#Bash completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/k8s-beckett-dev
