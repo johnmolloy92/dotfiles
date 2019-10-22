@@ -9,7 +9,7 @@ alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
-alias lt='ls -altr'
+alias lt='ls -altrh'
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
@@ -42,6 +42,7 @@ alias emacs="/usr/local/Cellar/emacs/25.1/bin/emacs -nw"
 alias glol='git log --graph --decorate --pretty='\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias gst='git status'
 alias gd='git diff'
+alias gpo='git pull origin'
 
 #   ---------------------------
 #   4.  SEARCHING
@@ -127,4 +128,31 @@ alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10
 
 alias deflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
 
+#   ---------------------------------------
+#   9. Kubernetes 
+#   ---------------------------------------
+
 alias k="kubectl"
+alias kc="kubectl config"
+alias kcu="kc use-context"
+alias kcg="kc get-contexts"
+
+#   ---------------------------------------
+#   10. Docker 
+#   --------------------------------------
+
+alias dc="docker-compose"																				# shorthand docker-compose
+function dcrm(){																								# kill & remove docker-compose containers.	
+	if [ -z "$1" ]
+		then
+			dc kill -s 9;
+			dc rm --force;
+		else
+			for service in "$@"
+			do
+				echo "Stopping and removing container: $service";
+				dc kill -s 9 "$service";				
+				dc rm --force "$service";
+			done	
+	fi
+}

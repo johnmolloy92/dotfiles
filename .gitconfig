@@ -31,6 +31,7 @@
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   pl = pull --rebase
   cl = clean --force
+	st = status
 
 [filter "media"]
   required = true

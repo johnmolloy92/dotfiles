@@ -22,7 +22,7 @@ prompt
 #   Set Paths
 #   ------------------------------------------------------------
 export PATH="$PATH"
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8.0_131)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8.0_161)
 export PATH=$PATH:/Users/jmolloy/go/bin
 export PATH=$PATH:/opt/protobuf/protoc-3.3.0-osx-x86_64/bin
 export PATH=$PATH:/usr/local/apache-tomcat-8.0.46
@@ -46,6 +46,7 @@ ssh-add -A 2>/dev/null
 
 #Ignore duplicates
 export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=2000
 
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
@@ -61,4 +62,8 @@ export PATH
 #Bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/k8s-beckett-dev
+export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/k8s-beckett-dev:/Users/jmolloy/.kube/shoot-consus:/Users/jmolloy/.kube/shoot-axeda
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jmolloy/.sdkman"
+[[ -s "/Users/jmolloy/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jmolloy/.sdkman/bin/sdkman-init.sh"
