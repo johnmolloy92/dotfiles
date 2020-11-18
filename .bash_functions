@@ -32,11 +32,6 @@ findPid () { lsof -t -c "$@" ; }
 #   -----------------------------------------------------------
 spotlight () { mdfind "kMDItemDisplayName == $*wc"; }
 
-# Docker
-dockercleancontainers() { docker container prune; }
-dockercleanimages() { docker image prune --all; }
-dockerclean() { dockercleancontainers && dockercleanimages; }
-
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
 extract () {
@@ -84,3 +79,34 @@ code () {
         open -a "Visual Studio Code" -n --args "$F"
     fi
 }
+
+#   ---------------------------------------
+#   Docker
+#   --------------------------------------
+function dcrm(){															# kill & remove docker-compose containers.
+	if [ -z "$1" ]
+		then
+			docker-compose kill -s 9;
+			docker-compose rm --force;
+		else
+			for service in "$@"
+			do
+				echo "Stopping and removing container: $service";
+				docker-compose kill -s 9 "$service";
+				docker-compose rm --force "$service";
+			done
+	fi
+}
+
+function dockerrm(){
+  for id in $(docker ps -a -q)
+	do
+		echo "Killing and removing docker container: $id"
+		docker kill $id;
+  	docker rm $id;
+	done
+}
+
+dockercleancontainers() { docker container prune; }
+dockercleanimages() { docker image prune --all; }
+dockerclean() { dockercleancontainers && dockercleanimages; }

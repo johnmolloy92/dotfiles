@@ -43,6 +43,8 @@ alias glol='git log --graph --decorate --pretty='\''%Cred%h%Creset -%C(yellow)%d
 alias gst='git status'
 alias gd='git diff'
 alias gpo='git pull origin'
+alias gf='git fetch'
+alias gc='git checkout'
 
 #   ---------------------------
 #   4.  SEARCHING
@@ -74,7 +76,7 @@ alias ttop="top -R -F -s 10 -o rsize"
 #   6.  NETWORKING
 #   ---------------------------
 
-alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias myip='curl ifconfig.me/ip'                    # myip:         Public facing IP Address
 alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
 alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
 alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
@@ -136,23 +138,12 @@ alias k="kubectl"
 alias kc="kubectl config"
 alias kcu="kc use-context"
 alias kcg="kc get-contexts"
+alias kx="kubectx"
 
 #   ---------------------------------------
 #   10. Docker 
 #   --------------------------------------
 
-alias dc="docker-compose"																				# shorthand docker-compose
-function dcrm(){																								# kill & remove docker-compose containers.	
-	if [ -z "$1" ]
-		then
-			dc kill -s 9;
-			dc rm --force;
-		else
-			for service in "$@"
-			do
-				echo "Stopping and removing container: $service";
-				dc kill -s 9 "$service";				
-				dc rm --force "$service";
-			done	
-	fi
-}
+alias dc="docker-compose"																																			# shorthand docker-compose
+alias dcupp="docker-compose up -d platform1 platform2"
+alias dcdp="dcrm platform1 platform2"

@@ -6,6 +6,20 @@
 [[ -s ~/.bash_functions ]] && . ~/.bash_functions
 [[ -s ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
 
+# kubeps1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+export KUBE_PS1_PREFIX=""
+export KUBE_PS1_SUFFIX=""
+export KUBE_PS1_SYMBOL_USE_IMG=true
+export KUBE_PS1_SYMBOL_ENABLE=true
+export KUBE_PS1_SEPARATOR="- "
+#[\u@\h \W $(kube_ps1)]\$ 
+
+#		Bash Completion
+#   ------------------------------------------------------------
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 prompt() {
 	RED="\[\033[0;31m\]"
 	GREEN="\[\033[0;32m\]"
@@ -13,7 +27,7 @@ prompt() {
 	BLUE="\[\033[0;34m\]"
 	PURPLE="\[\033[0;35m\]"
 	RESETCOLOR="\[\e[00m\]"
-	PS1="\n$BLUE\u $PURPLE@ $GREEN\w $RESETCOLOR$GREENBOLD\$(__git_ps1)\n $BLUE[\#] → $RESETCOLOR"
+	PS1="\n$BLUE\u | \$(kube_ps1) | $PURPLE@ $GREEN\w $RESETCOLOR$GREENBOLD\$(__git_ps1) \n $BLUE[\#] → $RESETCOLOR "
 	export PS2=" | → $RESETCOLOR"
 }
 
@@ -26,6 +40,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8.0_161)
 export PATH=$PATH:/Users/jmolloy/go/bin
 export PATH=$PATH:/opt/protobuf/protoc-3.3.0-osx-x86_64/bin
 export PATH=$PATH:/usr/local/apache-tomcat-8.0.46
+export ECLIPSE_HOME=/Applications/Eclipse.app/Contents/Eclipse
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
@@ -60,9 +75,10 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
 
 #Bash completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+#[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/k8s-beckett-dev:/Users/jmolloy/.kube/shoot-consus:/Users/jmolloy/.kube/shoot-axeda
+export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/shoot-consus:/Users/jmolloy/.kube/shoot-axeda:/Users/jmolloy/.kube/cluster-nimbus.kubeconfig:/Users/jmolloy/.kube/cluster-cirrus:.kubeconfig:/Users/jmolloy/.kube/cluster-atlas.kubeconfig
+export KUBECONFIG=$KUBECONFIG:~/.kube/cluster-cirrus.kubeconfig
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jmolloy/.sdkman"
