@@ -139,6 +139,7 @@ alias kc="kubectl config"
 alias kcu="kc use-context"
 alias kcg="kc get-contexts"
 alias kx="kubectx"
+alias kns="kubens"
 
 #   ---------------------------------------
 #   10. Docker 

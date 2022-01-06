@@ -20,6 +20,10 @@ export KUBE_PS1_SEPARATOR="- "
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
+export NVM_DIR="$HOME/.nvm"
+    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 prompt() {
 	RED="\[\033[0;31m\]"
 	GREEN="\[\033[0;32m\]"
@@ -77,9 +81,13 @@ export PATH
 #Bash completion
 #[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/shoot-consus:/Users/jmolloy/.kube/shoot-axeda:/Users/jmolloy/.kube/cluster-nimbus.kubeconfig:/Users/jmolloy/.kube/cluster-cirrus:.kubeconfig:/Users/jmolloy/.kube/cluster-atlas.kubeconfig
+export KUBECONFIG=/Users/jmolloy/.kube/config:/Users/jmolloy/.kube/shoot-consus:/Users/jmolloy/.kube/shoot-axeda:/Users/jmolloy/.kube/cluster-nimbus.kubeconfig:/Users/jmolloy/.kube/cluster-cirrus:.kubeconfig:/Users/jmolloy/.kube/cluster-atlas.kubeconfig:/Users/jmolloy/.kube/cluster-atlas-dev-00.kubeconfig:/Users/jmolloy/.kube/cluster-iot-01.kubeconfig:/Users/jmolloy/.kube/cluster-plm-atlas.kubeconfig:/Users/jmolloy/.kube/cluster-windchill-dev-00.kubeconfig:/Users/jmolloy/.kube/cluster-acc-sandbox-00.kubeconfig:/Users/jmolloy/.kube/cluster-atlas-prod-00.kubeconfig
 export KUBECONFIG=$KUBECONFIG:~/.kube/cluster-cirrus.kubeconfig
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jmolloy/.sdkman"
 [[ -s "/Users/jmolloy/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jmolloy/.sdkman/bin/sdkman-init.sh"
+
+complete -C /usr/local/bin/vault vault
